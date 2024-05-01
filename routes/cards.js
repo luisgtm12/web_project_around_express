@@ -3,8 +3,15 @@ const fs = require('fs');
 const path = require('path');
 
 const router = express.Router();
+const cardController = require('../controllers/card');
 
-const filePath = path.join(__dirname ,'..' ,'data' ,'cards.json');
+router.get('/', cardController.getAllCards);
+router.post('/', cardController.createCard);
+router.delete('/:cardId', cardController.deleteCardById);
+
+module.exports = router;
+
+/*const filePath = path.join(__dirname ,'..' ,'data' ,'cards.json');
 
 router.get('/', (req, res) =>{
 
@@ -22,4 +29,4 @@ router.get('/', (req, res) =>{
   });
 });
 
-module.exports = router;
+*/

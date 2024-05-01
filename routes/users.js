@@ -3,8 +3,17 @@ const fs = require('fs');
 const path = require('path');
 
 const router = express.Router();
+const userController = require('../controllers/user');
 
-const filePath = path.join(__dirname ,'..' ,'data' ,'users.json');
+router.get('/', userController.getAllUsers);
+router.get('/:userId', userController.getUserById);
+router.post('/', userController.createUser);
+router.patch('/me',userController.updateProfile)
+router.patch('/me/avatar', userController.updateAvatar);
+
+module.exports = router;
+
+/*const filePath = path.join(__dirname ,'..' ,'data' ,'users.json');
 
 router.get('/',(req,res )=>{
   fs.readFile(filePath,'utf-8',(error, data)=>{
@@ -46,4 +55,4 @@ router.get('/:id',(req,res)=>{
     res.json(user);
   })
 })
-module.exports = router;
+*/
